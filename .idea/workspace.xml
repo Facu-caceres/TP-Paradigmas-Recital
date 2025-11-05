@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fc9421c5-6693-440b-81f3-42e8fc05e286" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artistas-discografica.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/artistas.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recital.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recital.pl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/util/ServicioProlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/util/ServicioProlog.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Facu-caceres"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Facu-caceres/TP-Paradigmas-Recital.git",
+    "accountId": "a4bb5816-7e35-42b2-8a2d-4f28a613a032"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="352RikeNd0W7T1XVuNWtRIes8FO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main App.executor": "Run",
+    "Application.Main.executor": "Profiler#1",
+    "JUnit.ProductoraTest.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/cacer/IdeaProjects/TP_Paradigmas_Recital_",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main App" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="ar.edu.UNLaM.tp_paradigmas.app.Main" />
+      <module name="TP_Paradigmas_Recital_" />
+      <option name="VM_PARAMETERS" value="--enable-native-access=ALL-UNNAMED -Djava.library.path=&quot;C:\Program Files\swipl\bin&quot;" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fc9421c5-6693-440b-81f3-42e8fc05e286" name="Changes" comment="" />
+      <created>1757360224019</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757360224019</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TP_Paradigmas_Recital_$ProductoraTest.ic" NAME="ProductoraTest Coverage Results" MODIFIED="1762306620019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>ar.edu.UNLaM.tp_paradigmas.service.*</FILTER>
+    </SUITE>
+  </component>
+</project>

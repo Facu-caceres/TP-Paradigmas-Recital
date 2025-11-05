@@ -16,9 +16,9 @@ public class Main {
         ServicioProlog servicioProlog = new ServicioProlog();
 
         // ¡Importante! Rutas relativas a la raíz del proyecto
-        final String RUTA_ARTISTAS = "artistas.json";
-        final String RUTA_RECITAL = "recital.json";
-        final String RUTA_ARTISTAS_BASE = "artistas-discografica.json";
+        final String RUTA_ARTISTAS = "archivos_fuente/artistas.json";
+        final String RUTA_RECITAL = "archivos_fuente/recital.json";
+        final String RUTA_ARTISTAS_BASE = "archivos_fuente/artistas-discografica.json";
 
         // Cargamos todos los datos al iniciar
         productora.cargarDatos(RUTA_ARTISTAS, RUTA_RECITAL, RUTA_ARTISTAS_BASE);

@@ -37,8 +37,13 @@
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.2</version> <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jpl7</groupId>
+            <artifactId>jpl</artifactId>
+            <version>7.4</version> <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jpl.jar</systemPath>
+        </dependency>
+
     </dependencies>
-
-
 
 </project>

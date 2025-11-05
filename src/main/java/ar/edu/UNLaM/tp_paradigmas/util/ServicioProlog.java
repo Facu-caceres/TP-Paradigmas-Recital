@@ -10,7 +10,7 @@ public class ServicioProlog {
     public ServicioProlog() {
         // 1. Cargamos nuestro archivo .pl
         // Usamos "new Atom(...)" como en el ejemplo Family.java
-        Query q1 = new Query("consult", new Term[]{new Atom("recital.pl")});
+        Query q1 = new Query("consult", new Term[]{new Atom("archivos_fuente/recital.pl")});
 
         // Verificamos si la carga fue exitosa
         System.out.println("Cargando 'recital.pl' ... " + (q1.hasSolution() ? "OK" : "FALLÓ"));
