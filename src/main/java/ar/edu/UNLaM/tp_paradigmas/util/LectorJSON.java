@@ -10,22 +10,20 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Clase de utilidad responsable de leer los archivos .json
- * y convertirlos en objetos Java (POJOs) usando la librería Jackson.
+/*
+   Clase de utilidad responsable de leer los archivos .json
+   y convertirlos en objetos Java (POJOs) usando la librería Jackson.
  */
 public class LectorJSON {
 
-    private ObjectMapper mapper;
+    private ObjectMapper mapper; // ObjectMapper es el objeto principal de Jackson para la conversión
 
     public LectorJSON() {
-        // ObjectMapper es el objeto principal de Jackson para la conversión
         this.mapper = new ObjectMapper();
     }
 
-    /**
-     * Carga el archivo artistas.json (o similar) y lo convierte en una Lista de Artistas.
-     */
+
+    // Carga el archivo artistas.json (o similar) y lo convierte en una Lista de Artistas.
     public List<Artista> cargarArtistas(String rutaArchivo) {
         try {
             // Lee el archivo y usa TypeReference para indicarle a Jackson
@@ -39,10 +37,10 @@ public class LectorJSON {
         }
     }
 
-    /**
-     * Carga el archivo recital.json (o similar) y lo convierte en una Lista de Canciones.
-     * Jackson usará los setters de la clase Cancion (setTitulo y setRolesRequeridos)
-     * para construir los objetos.
+    /*
+       Carga el archivo recital.json (o similar) y lo convierte en una Lista de Canciones.
+       Jackson usará los setters de la clase Cancion (setTitulo y setRolesRequeridos)
+       para construir los objetos.
      */
     public List<Cancion> cargarCanciones(String rutaArchivo) {
         try {
@@ -54,10 +52,8 @@ public class LectorJSON {
         }
     }
 
-    /**
-     * Carga el archivo artistas-discografica.json (o similar) y lo convierte en una
-     * simple Lista de Strings (nombres).
-     */
+    // Carga el archivo artistas-discografica.json y lo convierte en una lista de Strings (nombres).
+
     public List<String> cargarArtistasBase(String rutaArchivo) {
         try {
             return mapper.readValue(new File(rutaArchivo), new TypeReference<List<String>>() {});

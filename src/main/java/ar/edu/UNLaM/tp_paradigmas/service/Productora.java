@@ -14,7 +14,7 @@ public class Productora {
     private Recital recital;
     private LectorJSON lector;
 
-    // NUEVO ATRIBUTO: Mapa para llevar la cuenta de las canciones por artista
+    // Mapa para llevar la cuenta de las canciones por artista
     private Map<Artista, Integer> cancionesPorArtista;
 
     public Productora() {
@@ -22,11 +22,10 @@ public class Productora {
         this.artistasDisponibles = new ArrayList<>();
         this.recital = new Recital();
         this.lector = new LectorJSON();
-        this.cancionesPorArtista = new HashMap<>(); // NUEVO: Inicializamos el mapa
+        this.cancionesPorArtista = new HashMap<>();
     }
 
-    // --- 1. Carga de Datos ---
-
+    // --- Carga de Datos ---
     public void cargarDatos(String rutaArtistas, String rutaRecital, String rutaArtistasDiscografica) {
         this.artistasDisponibles = lector.cargarArtistas(rutaArtistas);
         List<String> nombresBase = lector.cargarArtistasBase(rutaArtistasDiscografica);
@@ -47,7 +46,7 @@ public class Productora {
         List<Cancion> canciones = lector.cargarCanciones(rutaRecital);
         this.recital.setCanciones(canciones);
 
-        // MODIFICADO: Llenamos el mapa de conteo al cargar los datos
+        // Llenamos el mapa de conteo al cargar los datos
         List<Artista> todosLosCandidatos = Stream.concat(this.artistasBase.stream(), this.artistasDisponibles.stream())
                 .collect(Collectors.toList());
         for (Artista artista : todosLosCandidatos) {
@@ -55,63 +54,44 @@ public class Productora {
         }
     }
 
-    // --- 2. Lógica de Contratación (Núcleo) ---
-
-    public void contratarArtistasParaRecital() {
-        // MODIFICADO: Juntamos a todos los artistas
+    // --- Lógica de Contratación ---
+    public List<String> contratarArtistasParaRecital() {
         List<Artista> todosLosCandidatos = new ArrayList<>(this.cancionesPorArtista.keySet());
 
-        // MODIFICADO: El mapa de conteo 'cancionesPorArtista' ya no se crea aquí,
-        // usamos el atributo de la clase.
+        List<String> rolesFallidosTotales = new ArrayList<>(); // lista con los roles que fallen
 
         for (Cancion cancion : this.recital.getCanciones()) {
-            // Llamamos a la lógica interna de contratación para esta canción
-            this.ejecutarContratacionPara(cancion, todosLosCandidatos);
+            List<String> fallidosEstaCancion = this.ejecutarContratacionPara(cancion, todosLosCandidatos);
+            rolesFallidosTotales.addAll(fallidosEstaCancion);
         }
+        // Devolvemos una lista única de roles que fallaron en todo el recital
+        return rolesFallidosTotales.stream().distinct().collect(Collectors.toList());
     }
 
-    // --- 3. Lógica del Menú ---
-
-    /**
-     * (Función 3) Contrata artistas solo para una canción específica.
-     * ESTA ES LA NUEVA LÓGICA QUE PEDISTE
-     */
-    public void contratarArtistasParaCancion(String tituloCancion) {
-        // 1. Buscar la canción
+    public List<String> contratarArtistasParaCancion(String tituloCancion) {
         Optional<Cancion> cancionOpt = this.recital.getCanciones().stream()
                 .filter(c -> c.getTitulo().equalsIgnoreCase(tituloCancion))
                 .findFirst();
 
         if (cancionOpt.isEmpty()) {
             System.out.println("Error: No se encontró la canción '" + tituloCancion + "'.");
-            return;
+            // Devolvemos una lista indicando el error
+            return Collections.singletonList("ERROR: CANCION_NO_ENCONTRADA");
         }
-
         Cancion cancion = cancionOpt.get();
-
-        // 2. Obtener candidatos
         List<Artista> todosLosCandidatos = new ArrayList<>(this.cancionesPorArtista.keySet());
-
-        // 3. Ejecutar la contratación solo para esa canción
-        this.ejecutarContratacionPara(cancion, todosLosCandidatos);
-
-        System.out.println("Proceso de contratación finalizado para '" + tituloCancion + "'.");
-        if(cancion.estaCubierta()){
-            System.out.println("La canción ahora está: Completa.");
-        } else {
-            System.out.println("La canción aún tiene roles faltantes.");
-        }
+        return this.ejecutarContratacionPara(cancion, todosLosCandidatos);
     }
 
-    /**
-     * MÉTODO PRIVADO: Lógica de asignación reutilizable
-     * Este método es llamado por contratarArtistasParaRecital() y contratarArtistasParaCancion()
+    /*
+       Lógica de asignación reutilizable
+       Este metodo es llamado por contratarArtistasParaRecital() y contratarArtistasParaCancion()
+       retorna una lista de los roles que no pudieron ser cubiertos.
      */
-    private void ejecutarContratacionPara(Cancion cancion, List<Artista> todosLosCandidatos) {
+    private List<String> ejecutarContratacionPara(Cancion cancion, List<Artista> todosLosCandidatos) {
 
-        // --- ARREGLO 3 ---
-        // (Creamos un set temporal para esta canción)
         Set<Artista> artistasYaAsignadosEnEstaCancion = new HashSet<>();
+        List<String> rolesFallidos = new ArrayList<>();
 
         for (Asignacion asignacion : cancion.getAsignacionesSinCubrir()) {
 
@@ -120,10 +100,8 @@ public class Productora {
 
             for (Artista candidato : todosLosCandidatos) {
 
-                // --- ARREGLO 3 (Continuación) ---
-                // (Verificamos que no esté ya asignado EN ESTA CANCIÓN)
                 if (artistasYaAsignadosEnEstaCancion.contains(candidato)) {
-                    continue; // Saltar a la siguiente iteración del bucle
+                    continue;
                 }
 
                 boolean puedeCubrirRol = candidato.puedeCubrirRol(asignacion.getRolRequerido());
@@ -138,45 +116,52 @@ public class Productora {
                     }
                 }
             }
-
             if (mejorCandidato != null) {
                 asignacion.setArtistaAsignado(mejorCandidato);
                 this.recital.agregarArtistaContratado(mejorCandidato);
-
-                // --- ARREGLO 3 (Continuación) ---
-                // (Lo añadimos al set de esta canción)
                 artistasYaAsignadosEnEstaCancion.add(mejorCandidato);
-
                 this.cancionesPorArtista.put(mejorCandidato, this.cancionesPorArtista.get(mejorCandidato) + 1);
+            } else {
+                rolesFallidos.add(asignacion.getRolRequerido());
             }
         }
+        // Devolvemos la lista de roles que no pudimos cubrir
+        return rolesFallidos;
     }
 
 
     private double calcularCostoContratacion(Artista candidato) {
         if (this.artistasBase.contains(candidato)) {
-            return 0; // Artistas de la base no tienen costo
+            return 0;
         }
 
         double costo = candidato.getCostoPorCancion();
 
-        // Verificamos si comparte banda con alguien YA contratado
+        // Verificamos si comparte banda con alguien ya contratado
         for (Artista contratado : this.recital.getArtistasContratados()) {
 
-            // --- ARREGLO 2 ---
-            // (Añadimos la condición !candidato.equals(contratado))
             if (!candidato.equals(contratado) && candidato.comparteBandaCon(contratado)) {
                 return costo * 0.50; // Aplica descuento
             }
         }
-
         return costo; // Sin descuento
     }
 
-    // ... (El resto de tus funciones: getRolesFaltantes, entrenarArtista, etc. no cambian) ...
+    private double calcularCostoCancion(Cancion cancion) {
+        double costoTotal = 0;
+
+        for (Asignacion asignacion : cancion.getAsignaciones()) {
+            Artista artista = asignacion.getArtistaAsignado();
+
+            if (artista != null) {
+                costoTotal += this.calcularCostoContratacion(artista);
+            }
+        }
+        return costoTotal;
+    }
+
 
     public Map<String, Long> getRolesFaltantesParaCancion(String tituloCancion) {
-        // ... (sin cambios)
         Optional<Cancion> cancionOpt = this.recital.getCanciones().stream()
                 .filter(c -> c.getTitulo().equalsIgnoreCase(tituloCancion))
                 .findFirst();
@@ -189,14 +174,12 @@ public class Productora {
     }
 
     public Map<String, Long> getRolesFaltantesTotales() {
-        // ... (sin cambios)
         return this.recital.getCanciones().stream()
                 .flatMap(cancion -> cancion.getAsignacionesSinCubrir().stream())
                 .collect(Collectors.groupingBy(Asignacion::getRolRequerido, Collectors.counting()));
     }
 
     public boolean entrenarArtista(String nombreArtista, String nuevoRol) {
-        // ... (sin cambios)
         Optional<Artista> artistaOpt = Stream.concat(
                         this.artistasBase.stream(),
                         this.artistasDisponibles.stream()
@@ -206,31 +189,36 @@ public class Productora {
 
         if (artistaOpt.isPresent()) {
             Artista artista = artistaOpt.get();
-            if (this.recital.getArtistasContratados().contains(artista)) {
-                return false;
+            // Verificamos si el artista está en la lista base o si ya fue contratado.
+            if (this.artistasBase.contains(artista) || this.recital.getArtistasContratados().contains(artista)) {
+                return false; // Error: No se puede entrenar un artista base o uno ya contratado
             }
             artista.agregarRol(nuevoRol);
             artista.setCostoPorCancion(artista.getCostoPorCancion() * 1.50);
             return true;
         }
-        return false;
+        return false; // El artista no existe
     }
 
     public Set<Artista> getArtistasContratados() {
-        // ... (sin cambios)
         return this.recital.getArtistasContratados();
     }
 
     public Map<String, String> getEstadoCanciones() {
-        // ... (sin cambios)
         return this.recital.getCanciones().stream()
                 .collect(Collectors.toMap(
                         Cancion::getTitulo,
-                        cancion -> cancion.estaCubierta() ? "Completa" : "Faltan roles"
+                        cancion -> {
+                            if (cancion.estaCubierta()) {
+                                double costo = this.calcularCostoCancion(cancion);
+                                return "Completa (Costo: $" + costo + ")";
+                            } else {
+                                return "Faltan roles";
+                            }
+                        }
                 ));
     }
 
-    // ... (Getters para tests sin cambios) ...
     public Recital getRecital() {
         return recital;
     }

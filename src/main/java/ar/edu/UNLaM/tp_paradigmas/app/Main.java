@@ -3,33 +3,32 @@ package ar.edu.UNLaM.tp_paradigmas.app;
 import ar.edu.UNLaM.tp_paradigmas.model.Artista;
 import ar.edu.UNLaM.tp_paradigmas.service.Productora;
 import ar.edu.UNLaM.tp_paradigmas.util.ServicioProlog;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
 
-        // --- 1. Inicialización ---
         Scanner scanner = new Scanner(System.in);
         Productora productora = new Productora();
         ServicioProlog servicioProlog = new ServicioProlog();
 
-        // ¡Importante! Rutas relativas a la raíz del proyecto
-        final String RUTA_ARTISTAS = "archivos_fuente/artistas.json";
-        final String RUTA_RECITAL = "archivos_fuente/recital.json";
-        final String RUTA_ARTISTAS_BASE = "archivos_fuente/artistas-discografica.json";
+        ///////////////////////// ¡Importante! Rutas relativas a la raíz del proyecto///////////////////////////////
+        final String RUTA_ARTISTAS = "archivos_prueba/artistas.json";
+        final String RUTA_RECITAL = "archivos_prueba/recital.json";
+        final String RUTA_ARTISTAS_BASE = "archivos_prueba/artistas-discografica.json";
 
-        // Cargamos todos los datos al iniciar
         productora.cargarDatos(RUTA_ARTISTAS, RUTA_RECITAL, RUTA_ARTISTAS_BASE);
         System.out.println("¡Datos cargados correctamente!");
 
-        // --- 2. Bucle del Menú ---
         int opcion = -1;
         do {
             mostrarMenu();
             try {
-                opcion = Integer.parseInt(scanner.nextLine()); // Leemos línea completa para evitar errores
+                opcion = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("Error: Por favor, ingrese un número válido.");
                 continue;
@@ -53,16 +52,76 @@ public class Main {
                     System.out.println("Roles faltantes en todo el recital: " + rolesTotales);
                     break;
                 case 3:
-                    // Contratar artistas para una canción X
+                    //Contratar artistas para una canción X del recital
                     System.out.print("Ingrese el título de la canción a contratar: ");
                     String tituloContratar = scanner.nextLine();
-                    productora.contratarArtistasParaCancion(tituloContratar);
+                    boolean reintentarContratacionCancion = true;
+                    do {
+                        List<String> rolesFallidosCancion = productora.contratarArtistasParaCancion(tituloContratar);
+
+                        if (rolesFallidosCancion.isEmpty()) {
+                            System.out.println("¡Contratación exitosa para '" + tituloContratar + "'!");
+                            reintentarContratacionCancion = false;
+                        } else if (rolesFallidosCancion.get(0).equals("ERROR: CANCION_NO_ENCONTRADA")) {
+                            reintentarContratacionCancion = false;
+                        } else {
+                            String rolFallido = rolesFallidosCancion.get(0); // Tomamos solo el primer rol que falló
+                            System.out.println("Error: No se encontró artista disponible para el rol: '" + rolFallido + "'");
+                            System.out.print("¿Desea entrenar un artista para este rol? (S/N): ");
+                            String decision = scanner.nextLine();
+
+                            if (decision.equalsIgnoreCase("S")) {
+                                System.out.print("Nombre del artista a entrenar: ");
+                                String nombreEntrenar = scanner.nextLine();
+
+                                if (productora.entrenarArtista(nombreEntrenar, rolFallido)) {
+                                    System.out.println("¡Artista entrenado! (Su costo aumentó 50%). Reintentando contratación...");
+                                    // reintentarContratacionCancion sigue en true, el bucle se repite
+                                } else {
+                                    System.out.println("Error: No se pudo entrenar a ese artista (no existe, es base o ya está contratado).");
+                                    reintentarContratacionCancion = false; // Termina el bucle
+                                }
+                            } else {
+                                System.out.println("Contratación abortada para esta canción.");
+                                reintentarContratacionCancion = false; // Termina el bucle
+                            }
+                        }
+                    } while (reintentarContratacionCancion);
                     break;
                 case 4:
-                    // Contratar artistas para todo el recital
+                    // Contratar artistas para todas las canciones a la vez
                     System.out.println("Contratando artistas para el recital...");
-                    productora.contratarArtistasParaRecital();
-                    System.out.println("¡Proceso de contratación finalizado!");
+                    boolean reintentarContratacionRecital = true;
+                    do {
+                        List<String> rolesFallidosRecital = productora.contratarArtistasParaRecital();
+                        if (rolesFallidosRecital.isEmpty()) {
+                            System.out.println("¡Contratación exitosa para todo el recital!");
+                            reintentarContratacionRecital = false;
+                        } else {
+                            // Unimos los roles fallidos en un String para mostrarlos
+                            String rolesStr = rolesFallidosRecital.stream().collect(Collectors.joining(", "));
+                            System.out.println("Error: No se encontraron artistas para los siguientes roles: " + rolesStr);
+                            System.out.print("¿Desea entrenar un artista para el primer rol ('" + rolesFallidosRecital.get(0) + "')? (S/N): ");
+                            String decision = scanner.nextLine();
+
+                            if (decision.equalsIgnoreCase("S")) {
+                                String rolAEntrenar = rolesFallidosRecital.get(0);
+                                System.out.print("Nombre del artista a entrenar: ");
+                                String nombreEntrenar = scanner.nextLine();
+
+                                if (productora.entrenarArtista(nombreEntrenar, rolAEntrenar)) {
+                                    System.out.println("¡Artista entrenado! (Su costo aumentó 50%). Reintentando contratación para todo el recital...");
+                                    // reintentarContratacionRecital sigue en true, el bucle se repite
+                                } else {
+                                    System.out.println("Error: No se pudo entrenar a ese artista (no existe, es base o ya está contratado).");
+                                    reintentarContratacionRecital = false; // Termina el bucle
+                                }
+                            } else {
+                                System.out.println("Contratación finalizada (con roles faltantes).");
+                                reintentarContratacionRecital = false; // Termina el bucle
+                            }
+                        }
+                    } while (reintentarContratacionRecital);
                     break;
                 case 5:
                     // Entrenar artista
@@ -73,7 +132,7 @@ public class Main {
                     if (productora.entrenarArtista(nombreArtista, nuevoRol)) {
                         System.out.println("¡Artista entrenado! (Su costo aumentó 50%)");
                     } else {
-                        System.out.println("Error: No se pudo entrenar al artista (no existe o ya fue contratado).");
+                        System.out.println("Error: No se pudo entrenar al artista (no existe, es base o ya fue contratado).");
                     }
                     break;
                 case 6:
@@ -119,9 +178,9 @@ public class Main {
 
     private static void mostrarMenu() {
         System.out.println("\n===== GESTIÓN DE RECITAL =====");
-        System.out.println("1. ¿Qué roles me faltan para tocar una canción X?");
+        System.out.println("1. ¿Qué roles me faltan para tocar una canción especifica?");
         System.out.println("2. ¿Qué roles me faltan para tocar todas las canciones?");
-        System.out.println("3. Contratar artistas para una canción X (Función no implementada)");
+        System.out.println("3. Contratar artistas para una canción especifica");
         System.out.println("4. Contratar artistas para todas las canciones del recital");
         System.out.println("5. Entrenar artista");
         System.out.println("6. Listar artistas contratados y su costo");

@@ -15,16 +15,12 @@ public class Artista {
     private double costoPorCancion;
     private int maxCanciones;
 
-    /**
-     * Constructor para crear un Artista.
-     * Anotado para que Jackson sepa cómo usarlo.
-     */
-    @JsonCreator // <-- 1. Le dice a Jackson que use ESTE constructor
+    @JsonCreator // Constructor anotado para que Jackson sepa como utilizarlo
     public Artista(
             @JsonProperty("nombre") String nombre,
             @JsonProperty("roles") List<String> roles,
             @JsonProperty("bandas") List<String> bandas,
-            @JsonProperty("costo") double costoPorCancion, // <-- 2. Mapea "costo" del JSON a la variable
+            @JsonProperty("costo") double costoPorCancion,
             @JsonProperty("maxCanciones") int maxCanciones) {
 
         this.nombre = nombre;
@@ -38,59 +34,42 @@ public class Artista {
     public String getNombre() {
         return nombre;
     }
-
     public List<String> getRoles() {
         return roles;
     }
-
     public List<String> getBandas() {
         return bandas;
     }
-
     public double getCostoPorCancion() {
         return costoPorCancion;
     }
-
     public int getMaxCanciones() {
         return maxCanciones;
     }
 
-    // --- Setters (para lógica de negocio) ---
-
+    // --- Setters  ---
     public void setCostoPorCancion(double costoPorCancion) {
         this.costoPorCancion = costoPorCancion;
     }
-
     public void agregarRol(String nuevoRol) {
         if (!this.roles.contains(nuevoRol)) {
             this.roles.add(nuevoRol);
         }
     }
 
-    // --- Métodos de Ayuda (Lógica) ---
+    // --- Métodos de Ayuda ---
 
-    /**
-     * Verifica si el artista puede desempeñar un rol específico.
-     */
     public boolean puedeCubrirRol(String rol) {
         return this.roles.contains(rol);
     }
 
-    /**
-     * Verifica si este artista comparte al menos una banda con otro artista.
-     * Esto es clave para calcular el descuento del 50%.
-     */
     public boolean comparteBandaCon(Artista otroArtista) {
-        // Collections.disjoint devuelve 'true' si las listas NO tienen elementos en común.
-        // Por lo tanto, devolvemos lo contrario (negación).
         return !Collections.disjoint(this.bandas, otroArtista.getBandas());
     }
 
-    // --- Métodos OBLIGATORIOS para Colecciones (Set, Map) ---
-
-    /**
-     * Define que dos artistas son "iguales" si tienen el mismo nombre.
-     * Esto es crucial para que Set<Artista> funcione y no haya duplicados.
+    /*
+      Define que dos artistas son "iguales" si tienen el mismo nombre.
+      Esto es crucial para que Set<Artista> funcione y no haya duplicados.
      */
     @Override
     public boolean equals(Object o) {
@@ -100,9 +79,7 @@ public class Artista {
         return Objects.equals(nombre, artista.nombre);
     }
 
-    /**
-     * Acompaña a equals(). Si dos objetos son equals(), deben tener el mismo hashCode().
-     */
+    // Si dos objetos son equals(), deben tener el mismo hashCode().
     @Override
     public int hashCode() {
         return Objects.hash(nombre);
