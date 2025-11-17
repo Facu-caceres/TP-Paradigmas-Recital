@@ -1,0 +1,79 @@
+{
+  "costoTotalRecital" : 0.0,
+  "cantidadArtistasContratados" : 0,
+  "canciones" : [ {
+    "titulo" : "Somebody to Love",
+    "completa" : false,
+    "costo" : 0.0,
+    "asignaciones" : [ {
+      "rol" : "voz principal",
+      "artista" : null
+    }, {
+      "rol" : "guitarra eléctrica",
+      "artista" : null
+    }, {
+      "rol" : "bajo",
+      "artista" : null
+    }, {
+      "rol" : "batería",
+      "artista" : null
+    }, {
+      "rol" : "piano",
+      "artista" : null
+    } ]
+  }, {
+    "titulo" : "We Will Rock You",
+    "completa" : false,
+    "costo" : 0.0,
+    "asignaciones" : [ {
+      "rol" : "voz principal",
+      "artista" : null
+    }, {
+      "rol" : "guitarra eléctrica",
+      "artista" : null
+    }, {
+      "rol" : "bajo",
+      "artista" : null
+    }, {
+      "rol" : "batería",
+      "artista" : null
+    } ]
+  }, {
+    "titulo" : "These Are the Days of Our Lives",
+    "completa" : false,
+    "costo" : 0.0,
+    "asignaciones" : [ {
+      "rol" : "voz principal",
+      "artista" : null
+    }, {
+      "rol" : "guitarra eléctrica",
+      "artista" : null
+    }, {
+      "rol" : "bajo",
+      "artista" : null
+    }, {
+      "rol" : "batería",
+      "artista" : null
+    } ]
+  }, {
+    "titulo" : "Under Pressure",
+    "completa" : false,
+    "costo" : 0.0,
+    "asignaciones" : [ {
+      "rol" : "voz principal",
+      "artista" : null
+    }, {
+      "rol" : "voz principal",
+      "artista" : null
+    }, {
+      "rol" : "guitarra eléctrica",
+      "artista" : null
+    }, {
+      "rol" : "bajo",
+      "artista" : null
+    }, {
+      "rol" : "batería",
+      "artista" : null
+    } ]
+  } ]
+}

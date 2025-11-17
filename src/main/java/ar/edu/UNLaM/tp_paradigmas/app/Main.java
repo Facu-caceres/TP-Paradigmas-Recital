@@ -21,6 +21,9 @@ public class Main {
         final String RUTA_RECITAL = "archivos_prueba/recital.json";
         final String RUTA_ARTISTAS_BASE = "archivos_prueba/artistas-discografica.json";
 
+        // BONUS: archivo de salida automático al terminar
+        final String RUTA_ESTADO_SALIDA = "archivos_prueba/recital-out.json";
+
         productora.cargarDatos(RUTA_ARTISTAS, RUTA_RECITAL, RUTA_ARTISTAS_BASE);
         System.out.println("¡Datos cargados correctamente!");
 
@@ -163,13 +166,75 @@ public class Main {
                     System.out.println("Entrenamientos mínimos: " + cantidadEntrenamientos);
                     break;
                 case 9:
+                    // ===== MENÚ DE BONUSES =====
+                    mostrarMenuBonus();
+                    String subOpcion = scanner.nextLine();
+                    switch (subOpcion) {
+                        case "1":
+                            // BONUS: Guardar estado en archivo elegido
+                            System.out.print("Ingrese la ruta del archivo donde guardar el estado: ");
+                            String rutaGuardar = scanner.nextLine();
+                            if (productora.guardarEstadoRecitalEnArchivo(rutaGuardar)) {
+                                System.out.println("Estado guardado correctamente en '" + rutaGuardar + "'");
+                            } else {
+                                System.out.println("No se pudo guardar el estado del recital.");
+                            }
+                            break;
+                        case "2":
+                            // BONUS 5: Cargar estado desde archivo elegido
+                            System.out.print("Ingrese la ruta del archivo desde el cual cargar el estado: ");
+                            String rutaCargar = scanner.nextLine();
+                            if (productora.cargarEstadoRecitalDesdeArchivo(rutaCargar)) {
+                                System.out.println("Estado cargado correctamente desde '" + rutaCargar + "'");
+                            } else {
+                                System.out.println("No se pudo cargar el estado del recital. Verifique el archivo.");
+                            }
+                            break;
+                        case "3":
+                            // BONUS 2: Arrepentimiento - quitar artista del recital
+                            System.out.print("Nombre del artista a quitar del recital: ");
+                            String nombreQuitar = scanner.nextLine();
+                            if (productora.quitarArtistaDelRecital(nombreQuitar)) {
+                                System.out.println("Se quitaron las participaciones de '" + nombreQuitar + "' del recital.");
+                            } else {
+                                System.out.println("No se encontraron participaciones de ese artista (quizás no estaba contratado).");
+                            }
+                            break;
+                        case "4":
+                            // BONUS 3: Historial de colaboraciones
+                            Map<String, Set<String>> grafo = productora.getGrafoColaboraciones();
+                            if (grafo.isEmpty()) {
+                                System.out.println("Aún no hay colaboraciones registradas (no hay canciones cubiertas).");
+                            } else {
+                                System.out.println("Historial de colaboraciones (grafo simple):");
+                                grafo.forEach((artista, colaboradores) -> {
+                                    String lista = String.join(", ", colaboradores);
+                                    System.out.println(" - " + artista + " ↔ { " + lista + " }");
+                                });
+                            }
+                            break;
+                        default:
+                            System.out.println("Sub-opción no válida.");
+                    }
+                    break;
+                case 10:
+                    // BONUS 5: al salir, guardar estado automático
+                    System.out.println("Generando archivo con el estado final del recital...");
+                    if (productora.guardarEstadoRecitalEnArchivo(RUTA_ESTADO_SALIDA)) {
+                        System.out.println("Estado final guardado en '" + RUTA_ESTADO_SALIDA + "'");
+                    } else {
+                        System.out.println("No se pudo generar el archivo de estado final.");
+                    }
                     System.out.println("Saliendo del programa...");
+
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
-            System.out.println("--- Presione Enter para continuar ---");
-            scanner.nextLine(); // Pausa
+            if (opcion != 10) {
+                System.out.println("--- Presione Enter para continuar ---");
+                scanner.nextLine(); // Pausa
+            }
 
         } while (opcion != 9);
 
@@ -186,7 +251,16 @@ public class Main {
         System.out.println("6. Listar artistas contratados y su costo");
         System.out.println("7. Listar canciones con su estado (completa/incompleta)");
         System.out.println("8. Calcular entrenamientos mínimos (Prolog)");
-        System.out.println("9. Salir");
+        System.out.println("9. BONUSES (guardar/cargar estado, arrepentimiento, colaboraciones)");
+        System.out.println("10. Salir");
+        System.out.print("Seleccione una opción: ");
+    }
+    private static void mostrarMenuBonus() {
+        System.out.println("\n--- MENÚ BONUS ---");
+        System.out.println("1. Guardar estado actual del recital en archivo");
+        System.out.println("2. Cargar estado del recital desde archivo ");
+        System.out.println("3. Quitar artista del recital ");
+        System.out.println("4. Mostrar historial de colaboraciones ");
         System.out.print("Seleccione una opción: ");
     }
 }
