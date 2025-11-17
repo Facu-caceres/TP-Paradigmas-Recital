@@ -21,8 +21,11 @@ public class Main {
         final String RUTA_RECITAL = "archivos_prueba/recital.json";
         final String RUTA_ARTISTAS_BASE = "archivos_prueba/artistas-discografica.json";
 
-        // BONUS: archivo de salida automático al terminar
-        final String RUTA_ESTADO_SALIDA = "archivos_prueba/recital-out.json";
+        // BONUS: archivos de salida
+        final String RUTA_ESTADO_SALIDA = "archivos_salida/recital-out.json";
+        // RUTA FIJA para guardar/cargar
+        final String RUTA_ESTADO_GUARDADO = "archivos_salida/recital-guardado.json";
+
 
         productora.cargarDatos(RUTA_ARTISTAS, RUTA_RECITAL, RUTA_ARTISTAS_BASE);
         System.out.println("¡Datos cargados correctamente!");
@@ -166,59 +169,65 @@ public class Main {
                     System.out.println("Entrenamientos mínimos: " + cantidadEntrenamientos);
                     break;
                 case 9:
-                    // ===== MENÚ DE BONUSES =====
-                    mostrarMenuBonus();
-                    String subOpcion = scanner.nextLine();
-                    switch (subOpcion) {
-                        case "1":
-                            // BONUS: Guardar estado en archivo elegido
-                            System.out.print("Ingrese la ruta del archivo donde guardar el estado: ");
-                            String rutaGuardar = scanner.nextLine();
-                            if (productora.guardarEstadoRecitalEnArchivo(rutaGuardar)) {
-                                System.out.println("Estado guardado correctamente en '" + rutaGuardar + "'");
-                            } else {
-                                System.out.println("No se pudo guardar el estado del recital.");
-                            }
-                            break;
-                        case "2":
-                            // BONUS 5: Cargar estado desde archivo elegido
-                            System.out.print("Ingrese la ruta del archivo desde el cual cargar el estado: ");
-                            String rutaCargar = scanner.nextLine();
-                            if (productora.cargarEstadoRecitalDesdeArchivo(rutaCargar)) {
-                                System.out.println("Estado cargado correctamente desde '" + rutaCargar + "'");
-                            } else {
-                                System.out.println("No se pudo cargar el estado del recital. Verifique el archivo.");
-                            }
-                            break;
-                        case "3":
-                            // BONUS 2: Arrepentimiento - quitar artista del recital
-                            System.out.print("Nombre del artista a quitar del recital: ");
-                            String nombreQuitar = scanner.nextLine();
-                            if (productora.quitarArtistaDelRecital(nombreQuitar)) {
-                                System.out.println("Se quitaron las participaciones de '" + nombreQuitar + "' del recital.");
-                            } else {
-                                System.out.println("No se encontraron participaciones de ese artista (quizás no estaba contratado).");
-                            }
-                            break;
-                        case "4":
-                            // BONUS 3: Historial de colaboraciones
-                            Map<String, Set<String>> grafo = productora.getGrafoColaboraciones();
-                            if (grafo.isEmpty()) {
-                                System.out.println("Aún no hay colaboraciones registradas (no hay canciones cubiertas).");
-                            } else {
-                                System.out.println("Historial de colaboraciones (grafo simple):");
-                                grafo.forEach((artista, colaboradores) -> {
-                                    String lista = String.join(", ", colaboradores);
-                                    System.out.println(" - " + artista + " ↔ { " + lista + " }");
-                                });
-                            }
-                            break;
-                        default:
-                            System.out.println("Sub-opción no válida.");
-                    }
+                    // MENÚ BONUS
+                    String subOpcion = "";
+                    do {
+                        mostrarMenuBonus();
+                        subOpcion = scanner.nextLine();
+                        switch (subOpcion) {
+                            case "1":
+                                // BONUS: Guardar estado
+                                if (productora.guardarEstadoRecitalEnArchivo(RUTA_ESTADO_GUARDADO)) {
+                                    System.out.println("Estado guardado correctamente en '" + RUTA_ESTADO_GUARDADO + "'");
+                                } else {
+                                    System.out.println("No se pudo guardar el estado del recital.");
+                                }
+                                break;
+                            case "2":
+                                // BONUS: Cargar estado
+                                if (productora.cargarEstadoRecitalDesdeArchivo(RUTA_ESTADO_GUARDADO)) {
+                                    System.out.println("Estado cargado correctamente desde '" + RUTA_ESTADO_GUARDADO + "'");
+                                } else {
+                                    System.out.println("No se pudo cargar el estado del recital. Verifique el archivo.");
+                                }
+                                break;
+                            case "3":
+                                // BONUS: Arrepentimiento - quitar artista del recital
+                                System.out.print("Nombre del artista a quitar del recital: ");
+                                String nombreQuitar = scanner.nextLine();
+                                if (productora.quitarArtistaDelRecital(nombreQuitar)) {
+                                    System.out.println("Se quitaron las participaciones de '" + nombreQuitar + "' del recital.");
+                                } else {
+                                    System.out.println("No se encontraron participaciones de ese artista (quizás no estaba contratado).");
+                                }
+                                break;
+                            case "4":
+                                // BONUS: Historial de colaboraciones
+                                Map<String, Set<String>> grafo = productora.getGrafoColaboraciones();
+                                if (grafo.isEmpty()) {
+                                    System.out.println("Aún no hay colaboraciones registradas (no hay canciones cubiertas).");
+                                } else {
+                                    System.out.println("Historial de colaboraciones (grafo simple):");
+                                    grafo.forEach((artista, colaboradores) -> {
+                                        String lista = String.join(", ", colaboradores);
+                                        System.out.println(" - " + artista + " ↔ { " + lista + " }");
+                                    });
+                                }
+                                break;
+                            case "5":
+                                System.out.println("Volviendo al menú principal...");
+                                break;
+                            default:
+                                System.out.println("Sub-opción no válida.");
+                        }
+                        if (!subOpcion.equals("5")) {
+                            System.out.println("--- Presione Enter para continuar en el menú Bonus ---");
+                            scanner.nextLine();
+                        }
+                    } while (!subOpcion.equals("5"));
                     break;
                 case 10:
-                    // BONUS 5: al salir, guardar estado automático
+                    // Al salir, guardar estado automático
                     System.out.println("Generando archivo con el estado final del recital...");
                     if (productora.guardarEstadoRecitalEnArchivo(RUTA_ESTADO_SALIDA)) {
                         System.out.println("Estado final guardado en '" + RUTA_ESTADO_SALIDA + "'");
@@ -226,17 +235,16 @@ public class Main {
                         System.out.println("No se pudo generar el archivo de estado final.");
                     }
                     System.out.println("Saliendo del programa...");
-
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
-            if (opcion != 10) {
+            if (opcion != 10 && opcion != 9) {
                 System.out.println("--- Presione Enter para continuar ---");
                 scanner.nextLine(); // Pausa
             }
 
-        } while (opcion != 9);
+        } while (opcion != 10);
 
         scanner.close();
     }
@@ -252,15 +260,18 @@ public class Main {
         System.out.println("7. Listar canciones con su estado (completa/incompleta)");
         System.out.println("8. Calcular entrenamientos mínimos (Prolog)");
         System.out.println("9. BONUSES (guardar/cargar estado, arrepentimiento, colaboraciones)");
-        System.out.println("10. Salir");
+        System.out.println("10. Salir y Guardar Estado Final");
         System.out.print("Seleccione una opción: ");
     }
+
+    // <-- MENÚ BONUS MODIFICADO
     private static void mostrarMenuBonus() {
         System.out.println("\n--- MENÚ BONUS ---");
-        System.out.println("1. Guardar estado actual del recital en archivo");
-        System.out.println("2. Cargar estado del recital desde archivo ");
+        System.out.println("1. Guardar estado actual del recital (en 'recital-guardado.json')");
+        System.out.println("2. Cargar estado del recital (desde 'recital-guardado.json')");
         System.out.println("3. Quitar artista del recital ");
         System.out.println("4. Mostrar historial de colaboraciones ");
+        System.out.println("5. Volver al menú principal");
         System.out.print("Seleccione una opción: ");
     }
 }
