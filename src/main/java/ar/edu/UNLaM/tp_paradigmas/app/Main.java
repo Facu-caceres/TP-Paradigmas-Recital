@@ -184,11 +184,29 @@ public class Main {
                                 }
                                 break;
                             case "2":
-                                // BONUS: Cargar estado
-                                if (productora.cargarEstadoRecitalDesdeArchivo(RUTA_ESTADO_GUARDADO)) {
-                                    System.out.println("Estado cargado correctamente desde '" + RUTA_ESTADO_GUARDADO + "'");
+                                // BONUS 5: Cargar estado (Selección de archivo)
+                                System.out.println("¿Desde qué archivo desea cargar el estado?");
+                                System.out.println("  [1] Archivo guardado manualmente ('recital-guardado.json')");
+                                System.out.println("  [2] Archivo de salida automática ('recital-out.json')");
+                                System.out.print("Seleccione una opción (1 o 2): ");
+                                String opcionCarga = scanner.nextLine();
+
+                                String rutaSeleccionada = null;
+
+                                if (opcionCarga.equals("1")) {
+                                    rutaSeleccionada = RUTA_ESTADO_GUARDADO;
+                                } else if (opcionCarga.equals("2")) {
+                                    rutaSeleccionada = RUTA_ESTADO_SALIDA;
                                 } else {
-                                    System.out.println("No se pudo cargar el estado del recital. Verifique el archivo.");
+                                    System.out.println("Opción no válida. Cancelando carga.");
+                                }
+
+                                if (rutaSeleccionada != null) {
+                                    if (productora.cargarEstadoRecitalDesdeArchivo(rutaSeleccionada)) {
+                                        System.out.println("Estado cargado correctamente desde '" + rutaSeleccionada + "'");
+                                    } else {
+                                        System.out.println("No se pudo cargar el estado. Verifique que el archivo exista y tenga el formato correcto.");
+                                    }
                                 }
                                 break;
                             case "3":
@@ -264,11 +282,11 @@ public class Main {
         System.out.print("Seleccione una opción: ");
     }
 
-    // <-- MENÚ BONUS MODIFICADO
+    // <-- MENÚ BONUS
     private static void mostrarMenuBonus() {
         System.out.println("\n--- MENÚ BONUS ---");
         System.out.println("1. Guardar estado actual del recital (en 'recital-guardado.json')");
-        System.out.println("2. Cargar estado del recital (desde 'recital-guardado.json')");
+        System.out.println("2. Cargar estado del recital ");
         System.out.println("3. Quitar artista del recital ");
         System.out.println("4. Mostrar historial de colaboraciones ");
         System.out.println("5. Volver al menú principal");

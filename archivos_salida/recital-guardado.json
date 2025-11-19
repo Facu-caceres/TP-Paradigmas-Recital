@@ -1,79 +1,79 @@
 {
-  "costoTotalRecital" : 2300.0,
-  "cantidadArtistasContratados" : 6,
+  "costoTotalRecital" : 0.0,
+  "cantidadArtistasContratados" : 0,
   "canciones" : [ {
     "titulo" : "Somebody to Love",
     "completa" : false,
-    "costo" : 100.0,
+    "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : "Axl Rose"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Brian May"
+      "artista" : null
     }, {
       "rol" : "bajo",
-      "artista" : "John Deacon"
+      "artista" : null
     }, {
       "rol" : "batería",
-      "artista" : "Roger Taylor"
+      "artista" : null
     }, {
       "rol" : "piano",
       "artista" : null
     } ]
   }, {
     "titulo" : "We Will Rock You",
-    "completa" : true,
-    "costo" : 500.0,
+    "completa" : false,
+    "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : "Mick Jagger"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Brian May"
+      "artista" : null
     }, {
       "rol" : "bajo",
-      "artista" : "John Deacon"
+      "artista" : null
     }, {
       "rol" : "batería",
-      "artista" : "Roger Taylor"
+      "artista" : null
     } ]
   }, {
     "titulo" : "These Are the Days of Our Lives",
-    "completa" : true,
-    "costo" : 600.0,
+    "completa" : false,
+    "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : "Keith Richards"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Brian May"
+      "artista" : null
     }, {
       "rol" : "bajo",
-      "artista" : "John Deacon"
+      "artista" : null
     }, {
       "rol" : "batería",
-      "artista" : "Roger Taylor"
+      "artista" : null
     } ]
   }, {
     "titulo" : "Under Pressure",
-    "completa" : true,
-    "costo" : 1100.0,
+    "completa" : false,
+    "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : "Mick Jagger"
+      "artista" : null
     }, {
       "rol" : "voz principal",
-      "artista" : "Keith Richards"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Brian May"
+      "artista" : null
     }, {
       "rol" : "bajo",
-      "artista" : "John Deacon"
+      "artista" : null
     }, {
       "rol" : "batería",
-      "artista" : "Roger Taylor"
+      "artista" : null
     } ]
   } ]
 }

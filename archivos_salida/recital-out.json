@@ -1,10 +1,10 @@
 {
-  "costoTotalRecital" : 2300.0,
-  "cantidadArtistasContratados" : 6,
+  "costoTotalRecital" : 2850.0,
+  "cantidadArtistasContratados" : 7,
   "canciones" : [ {
     "titulo" : "Somebody to Love",
-    "completa" : false,
-    "costo" : 100.0,
+    "completa" : true,
+    "costo" : 650.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
       "artista" : "Axl Rose"
@@ -19,7 +19,7 @@
       "artista" : "Roger Taylor"
     }, {
       "rol" : "piano",
-      "artista" : null
+      "artista" : "Slash"
     } ]
   }, {
     "titulo" : "We Will Rock You",
