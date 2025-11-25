@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc9421c5-6693-440b-81f3-42e8fc05e286" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archivos_fuente/recital.pl" beforeDir="false" afterPath="$PROJECT_DIR$/archivos_fuente/recital.pl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archivos_salida/recital-guardado.json" beforeDir="false" afterPath="$PROJECT_DIR$/archivos_salida/recital-guardado.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archivos_salida/recital-out.json" beforeDir="false" afterPath="$PROJECT_DIR$/archivos_salida/recital-out.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/app/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/app/MainGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/service/Productora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/service/Productora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/util/ServicioProlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/util/ServicioProlog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ar/edu/UNLaM/tp_paradigmas/service/ProductoraTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ar/edu/UNLaM/tp_paradigmas/service/ProductoraTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +54,7 @@
     "Application.MainGUI.executor": "Run",
     "JUnit.ProductoraIntegrationTest.executor": "Run",
     "JUnit.ProductoraIntegrationTest.quitarArtistaEliminaAsignaciones.executor": "Run",
-    "JUnit.ProductoraTest.executor": "Debug",
+    "JUnit.ProductoraTest.executor": "Run",
     "Maven.TP_Paradigmas_Recital_ [clean].executor": "Run",
     "Maven.TP_Paradigmas_Recital_ [install].executor": "Run",
     "Maven.TP_Paradigmas_Recital_ [verify].executor": "Run",
@@ -126,7 +119,7 @@
       <workItem from="1764010425057" duration="748000" />
       <workItem from="1764011815470" duration="13385000" />
       <workItem from="1764034546896" duration="159000" />
-      <workItem from="1764083310000" duration="14823000" />
+      <workItem from="1764083310000" duration="15551000" />
     </task>
     <servers />
   </component>
@@ -138,7 +131,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ar/edu/UNLaM/tp_paradigmas/service/ProductoraTest.java</url>
-          <line>90</line>
+          <line>73</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
