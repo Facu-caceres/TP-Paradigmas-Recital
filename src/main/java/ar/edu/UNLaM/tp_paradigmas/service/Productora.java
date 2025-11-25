@@ -263,8 +263,7 @@ public class Productora {
                         Cancion::getTitulo,
                         cancion -> {
                             if (cancion.estaCubierta()) {
-                                double costo = this.calcularCostoCancion(cancion);
-                                return "Completa (Costo: $" + costo + ")";
+                                return "Completa";
                             } else {
                                 return "Faltan roles";
                             }

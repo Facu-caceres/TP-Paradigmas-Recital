@@ -278,7 +278,7 @@ public class MainGUI extends Application {
     }
 
     private void consultaProlog() {
-        int n = servicioProlog.getEntrenamientosMinimos();
+        int n = servicioProlog.getEntrenamientosMinimos(productora.getArtistasBase(), productora.getRecital().getCanciones());
         mostrarAlertaInfo("Prolog", "Entrenamientos mínimos necesarios: " + n);
     }
 

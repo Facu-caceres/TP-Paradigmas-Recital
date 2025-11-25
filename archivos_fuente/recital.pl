@@ -1,46 +1,7 @@
-% ---
-% --- HECHOS (FACTS)
-% ---
-
-% --- Artistas Base y sus roles ---
-% (Agrupamos todos los 'base_member' primero)
-base_member(brian_may).
-base_member(roger_taylor).
-base_member(john_deacon).
-
-% (Agrupamos todos los 'artista' después)
-artista(brian_may, [guitarra_electrica, voz_secundaria]).
-artista(roger_taylor, [bateria, voz_secundaria]).
-artista(john_deacon, [bajo]).
-
-% --- Roles requeridos por el recital (de recital.json)
-% (Se definen como hechos individuales para que Prolog pueda contarlos)
-
-% Somebody to Love
-rol_requerido(voz_principal).
-rol_requerido(guitarra_electrica).
-rol_requerido(bajo).
-rol_requerido(bateria).
-rol_requerido(piano).
-
-% We Will Rock You
-rol_requerido(voz_principal).
-rol_requerido(guitarra_electrica).
-rol_requerido(bajo).
-rol_requerido(bateria).
-
-% These Are the Days of Our Lives
-rol_requerido(voz_principal).
-rol_requerido(guitarra_electrica).
-rol_requerido(bajo).
-rol_requerido(bateria).
-
-% Under Pressure
-rol_requerido(voz_principal).
-rol_requerido(voz_principal).  % <-- La segunda voz principal
-rol_requerido(guitarra_electrica).
-rol_requerido(bajo).
-rol_requerido(bateria).
+% --- Predicados dinámicos cargados desde Java ---
+:- dynamic base_member/1.
+:- dynamic artista/2.
+:- dynamic rol_requerido/1.
 
 
 % ---

@@ -188,7 +188,10 @@ public class Main {
                     break;
                 case 8:
                     // Resolver la consigna de Prolog
-                    int cantidadEntrenamientos = servicioProlog.getEntrenamientosMinimos();
+                    int cantidadEntrenamientos = servicioProlog.getEntrenamientosMinimos(
+                            productora.getArtistasBase(),
+                            productora.getRecital().getCanciones()
+                    );
                     System.out.println("--- Respuesta de Prolog ---");
                     System.out.println("Según los miembros base y los roles del recital, se necesitarían...");
                     System.out.println("Entrenamientos mínimos: " + cantidadEntrenamientos);
