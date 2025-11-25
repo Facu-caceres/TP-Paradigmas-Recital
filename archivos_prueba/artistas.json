@@ -9,7 +9,7 @@
   {
     "nombre": "Piti Fernández",
     "roles": ["guitarra eléctrica", "coros"],
-    "bandas": ["Los Piojos"],
+    "bandas": ["Las Pastillas del Abuelo"],
     "costo": 0,
     "maxCanciones": 10
   },
@@ -30,7 +30,7 @@
   {
     "nombre": "Andrea Álvarez",
     "roles": ["batería", "percusión", "coros"],
-    "bandas": ["Rouge", "Divididos"],
+    "bandas": ["Rouge", "Divididos","Las Pastillas del Abuelo"],
     "costo": 800,
     "maxCanciones": 4
   },

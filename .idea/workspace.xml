@@ -8,12 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archivos_prueba/artistas-discografica.json" beforeDir="false" afterPath="$PROJECT_DIR$/archivos_prueba/artistas-discografica.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archivos_prueba/artistas.json" beforeDir="false" afterPath="$PROJECT_DIR$/archivos_prueba/artistas.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archivos_prueba/recital.json" beforeDir="false" afterPath="$PROJECT_DIR$/archivos_prueba/recital.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archivos_salida/recital-guardado.json" beforeDir="false" afterPath="$PROJECT_DIR$/archivos_salida/recital-guardado.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archivos_salida/recital-out.json" beforeDir="false" afterPath="$PROJECT_DIR$/archivos_salida/recital-out.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/model/Cancion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/model/Cancion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/service/Productora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/UNLaM/tp_paradigmas/service/Productora.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,12 +107,23 @@
       <workItem from="1764010425057" duration="748000" />
       <workItem from="1764011815470" duration="13385000" />
       <workItem from="1764034546896" duration="159000" />
-      <workItem from="1764083310000" duration="10036000" />
+      <workItem from="1764083310000" duration="11066000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ar/edu/UNLaM/tp_paradigmas/service/ProductoraTest.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
