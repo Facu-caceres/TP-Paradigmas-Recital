@@ -1,18 +1,22 @@
 [
   {
-    "titulo": "Somebody to Love",
-    "rolesRequeridos": ["voz principal", "guitarra eléctrica", "bajo", "batería", "piano"]
+    "titulo": "Maradó",
+    "rolesRequeridos": ["voz principal", "guitarra eléctrica", "bajo", "batería", "armónica"]
   },
   {
-    "titulo": "We Will Rock You",
-    "rolesRequeridos": ["voz principal", "guitarra eléctrica", "bajo", "batería"]
+    "titulo": "Jijiji",
+    "rolesRequeridos": ["voz principal", "voz principal", "guitarra eléctrica", "guitarra eléctrica", "bajo", "batería"]
   },
   {
-    "titulo": "These Are the Days of Our Lives",
-    "rolesRequeridos": ["voz principal", "guitarra eléctrica", "bajo", "batería"]
+    "titulo": "Los Dinosaurios",
+    "rolesRequeridos": ["voz principal", "piano", "teclados", "bajo", "batería"]
   },
   {
-    "titulo": "Under Pressure",
-    "rolesRequeridos": ["voz principal", "voz principal", "guitarra eléctrica", "bajo", "batería"]
+    "titulo": "Costumbres Argentinas",
+    "rolesRequeridos": ["voz principal", "guitarra eléctrica", "bajo", "batería", "coros"]
+  },
+  {
+    "titulo": "Toxi-Taxi",
+    "rolesRequeridos": ["voz principal", "guitarra eléctrica", "guitarra eléctrica", "bajo", "batería", "coros"]
   }
 ]

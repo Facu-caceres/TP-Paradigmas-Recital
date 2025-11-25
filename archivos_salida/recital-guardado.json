@@ -1,12 +1,38 @@
 {
-  "costoTotalRecital" : 0.0,
-  "cantidadArtistasContratados" : 0,
+  "costoTotalRecital" : 3050.0,
+  "cantidadArtistasContratados" : 5,
   "canciones" : [ {
-    "titulo" : "Somebody to Love",
+    "titulo" : "Maradó",
+    "completa" : true,
+    "costo" : 3050.0,
+    "asignaciones" : [ {
+      "rol" : "voz principal",
+      "artista" : "Andrés Ciro Martínez"
+    }, {
+      "rol" : "guitarra eléctrica",
+      "artista" : "Piti Fernández"
+    }, {
+      "rol" : "bajo",
+      "artista" : "Micky Rodríguez"
+    }, {
+      "rol" : "batería",
+      "artista" : "Andrea Álvarez"
+    }, {
+      "rol" : "armónica",
+      "artista" : "Charly García"
+    } ]
+  }, {
+    "titulo" : "Jijiji",
     "completa" : false,
     "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
+      "artista" : null
+    }, {
+      "rol" : "voz principal",
+      "artista" : null
+    }, {
+      "rol" : "guitarra eléctrica",
       "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
@@ -16,13 +42,30 @@
       "artista" : null
     }, {
       "rol" : "batería",
+      "artista" : null
+    } ]
+  }, {
+    "titulo" : "Los Dinosaurios",
+    "completa" : false,
+    "costo" : 0.0,
+    "asignaciones" : [ {
+      "rol" : "voz principal",
       "artista" : null
     }, {
       "rol" : "piano",
       "artista" : null
+    }, {
+      "rol" : "teclados",
+      "artista" : null
+    }, {
+      "rol" : "bajo",
+      "artista" : null
+    }, {
+      "rol" : "batería",
+      "artista" : null
     } ]
   }, {
-    "titulo" : "We Will Rock You",
+    "titulo" : "Costumbres Argentinas",
     "completa" : false,
     "costo" : 0.0,
     "asignaciones" : [ {
@@ -37,13 +80,19 @@
     }, {
       "rol" : "batería",
       "artista" : null
+    }, {
+      "rol" : "coros",
+      "artista" : null
     } ]
   }, {
-    "titulo" : "These Are the Days of Our Lives",
+    "titulo" : "Toxi-Taxi",
     "completa" : false,
     "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
+      "artista" : null
+    }, {
+      "rol" : "guitarra eléctrica",
       "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
@@ -54,25 +103,8 @@
     }, {
       "rol" : "batería",
       "artista" : null
-    } ]
-  }, {
-    "titulo" : "Under Pressure",
-    "completa" : false,
-    "costo" : 0.0,
-    "asignaciones" : [ {
-      "rol" : "voz principal",
-      "artista" : null
     }, {
-      "rol" : "voz principal",
-      "artista" : null
-    }, {
-      "rol" : "guitarra eléctrica",
-      "artista" : null
-    }, {
-      "rol" : "bajo",
-      "artista" : null
-    }, {
-      "rol" : "batería",
+      "rol" : "coros",
       "artista" : null
     } ]
   } ]

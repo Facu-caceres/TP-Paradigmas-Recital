@@ -131,6 +131,10 @@ public class Productora {
                 this.recital.agregarArtistaContratado(mejorCandidato);
                 artistasYaAsignadosEnEstaCancion.add(mejorCandidato);
                 this.cancionesPorArtista.put(mejorCandidato, this.cancionesPorArtista.get(mejorCandidato) + 1);
+                System.out.println(
+                        "Contratado '" + mejorCandidato.getNombre() + "' para el rol '" +
+                                asignacion.getRolRequerido() + "' en '" + cancion.getTitulo() +
+                                "' por $" + costoMinimo);
             } else {
                 rolesFallidos.add(asignacion.getRolRequerido());
             }
@@ -157,7 +161,7 @@ public class Productora {
         return costo; // Sin descuento
     }
 
-    private double calcularCostoCancion(Cancion cancion) {
+    public double calcularCostoCancion(Cancion cancion) {
         double costoTotal = 0;
 
         for (Asignacion asignacion : cancion.getAsignaciones()) {
@@ -203,6 +207,9 @@ public class Productora {
             if (this.artistasBase.contains(artista) || this.recital.getArtistasContratados().contains(artista)) {
                 return false; // Error: No se puede entrenar un artista base o uno ya contratado
             }
+            if (artista.puedeCubrirRol(nuevoRol)) {
+                return false; // No tiene sentido entrenarlo en un rol que ya conoce
+            }
             artista.agregarRol(nuevoRol);
             artista.setCostoPorCancion(artista.getCostoPorCancion() * 1.50);
             return true;
@@ -212,6 +219,42 @@ public class Productora {
 
     public Set<Artista> getArtistasContratados() {
         return this.recital.getArtistasContratados();
+    }
+
+    public Map<Artista, List<String>> getParticipacionesPorArtista() {
+        Map<Artista, List<String>> participaciones = new LinkedHashMap<>();
+        for (Cancion cancion : recital.getCanciones()) {
+            for (Asignacion asignacion : cancion.getAsignaciones()) {
+                Artista artista = asignacion.getArtistaAsignado();
+                if (artista != null) {
+                    participaciones.computeIfAbsent(artista, a -> new ArrayList<>())
+                            .add(cancion.getTitulo() + " - " + asignacion.getRolRequerido());
+                }
+            }
+        }
+        return participaciones;
+    }
+
+    public Map<String, String> getEstadoCancionesDetallado() {
+        return this.recital.getCanciones().stream()
+                .collect(Collectors.toMap(
+                        Cancion::getTitulo,
+                        cancion -> {
+                            double costo = this.calcularCostoCancion(cancion);
+                            StringBuilder detalle = new StringBuilder();
+                            detalle.append(cancion.estaCubierta() ? "Completa" : "Incompleta")
+                                    .append(" | Costo: $").append(costo).append("\n");
+                            detalle.append("  Asignaciones:\n");
+                            for (Asignacion asignacion : cancion.getAsignaciones()) {
+                                String artista = asignacion.getArtistaAsignado() == null
+                                        ? "(sin asignar)"
+                                        : asignacion.getArtistaAsignado().getNombre();
+                                detalle.append("   - ").append(asignacion.getRolRequerido())
+                                        .append(": ").append(artista).append("\n");
+                            }
+                            return detalle.toString().trim();
+                        }
+                ));
     }
 
     public Map<String, String> getEstadoCanciones() {
@@ -227,6 +270,15 @@ public class Productora {
                             }
                         }
                 ));
+    }
+
+    public List<String> getRolesRequeridosDelRecital() {
+        return this.recital.getCanciones().stream()
+                .flatMap(c -> c.getAsignaciones().stream())
+                .map(Asignacion::getRolRequerido)
+                .distinct()
+                .sorted()
+                .toList();
     }
 
     public Recital getRecital() {
