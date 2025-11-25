@@ -289,6 +289,15 @@ public class Productora {
     public List<Artista> getArtistasBase() {
         return artistasBase;
     }
+
+
+    public List<Artista> getTodosLosArtistas() {
+        Set<Artista> todos = new LinkedHashSet<>();
+        todos.addAll(artistasBase);
+        todos.addAll(artistasDisponibles);
+        todos.addAll(recital.getArtistasContratados());
+        return new ArrayList<>(todos);
+    }
     public Map<Artista, Integer> getCancionesPorArtista() {
         return cancionesPorArtista;
     }

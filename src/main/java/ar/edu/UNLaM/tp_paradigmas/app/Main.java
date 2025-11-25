@@ -190,6 +190,7 @@ public class Main {
                     // Resolver la consigna de Prolog
                     int cantidadEntrenamientos = servicioProlog.getEntrenamientosMinimos(
                             productora.getArtistasBase(),
+                            productora.getTodosLosArtistas(),
                             productora.getRecital().getCanciones()
                     );
                     System.out.println("--- Respuesta de Prolog ---");

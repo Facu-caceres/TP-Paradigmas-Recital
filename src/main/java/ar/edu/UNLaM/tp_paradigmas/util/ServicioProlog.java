@@ -16,9 +16,9 @@ public class ServicioProlog {
         limpiarHechosCargados();
     }
 
-    public int getEntrenamientosMinimos(List<Artista> artistasBase, List<Cancion> canciones) {
+    public int getEntrenamientosMinimos(List<Artista> artistasBase, List<Artista> todosLosArtistas, List<Cancion> canciones) {
         limpiarHechosCargados();
-        cargarBaseProlog(artistasBase, canciones);
+        cargarBaseProlog(artistasBase, todosLosArtistas, canciones);
 
         Variable Cantidad = new Variable("Cantidad");
 
@@ -34,12 +34,16 @@ public class ServicioProlog {
         }
     }
 
-    private void cargarBaseProlog(List<Artista> artistasBase, List<Cancion> canciones) {
-        for (Artista artista : artistasBase) {
+    private void cargarBaseProlog(List<Artista> artistasBase, List<Artista> todosLosArtistas, List<Cancion> canciones) {
+        for (Artista artista : todosLosArtistas) {
             Term nombre = new Atom(formatearNombre(artista.getNombre()));
             Term roles = Util.termArrayToList(artista.getRoles().stream().map(Atom::new).toArray(Term[]::new));
-            assertHecho("base_member", nombre);
             assertHecho("artista", nombre, roles);
+        }
+
+        for (Artista artistaBase : artistasBase) {
+            Term nombre = new Atom(formatearNombre(artistaBase.getNombre()));
+            assertHecho("base_member", nombre);
         }
 
         for (Cancion cancion : canciones) {

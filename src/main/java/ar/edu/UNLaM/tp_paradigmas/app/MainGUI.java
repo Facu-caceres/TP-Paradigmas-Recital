@@ -278,9 +278,13 @@ public class MainGUI extends Application {
     }
 
     private void consultaProlog() {
-        int n = servicioProlog.getEntrenamientosMinimos(productora.getArtistasBase(), productora.getRecital().getCanciones());
-        mostrarAlertaInfo("Prolog", "Entrenamientos mínimos necesarios: " + n);
+        int n = servicioProlog.getEntrenamientosMinimos(
+                productora.getArtistasBase(),
+                productora.getTodosLosArtistas(),
+                productora.getRecital().getCanciones());
+        mostrarAlertaInfo("Prolog", "Entrenamientos mínimos: " + n);
     }
+
 
     private void guardarEstado() {
         if(productora.guardarEstadoRecitalEnArchivo(RUTA_ESTADO_GUARDADO)) mostrarAlertaInfo("Guardar", "Guardado OK.");

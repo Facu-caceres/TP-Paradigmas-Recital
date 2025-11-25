@@ -1,10 +1,10 @@
 {
-  "costoTotalRecital" : 10300.0,
+  "costoTotalRecital" : 12175.0,
   "cantidadArtistasContratados" : 10,
   "canciones" : [ {
     "titulo" : "Maradó",
     "completa" : true,
-    "costo" : 1075.0,
+    "costo" : 2650.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
       "artista" : "Andrés Ciro Martínez"
@@ -19,12 +19,12 @@
       "artista" : "Andrea Álvarez"
     }, {
       "rol" : "armónica",
-      "artista" : "Ricardo Mollo"
+      "artista" : "Charly García"
     } ]
   }, {
     "titulo" : "Jijiji",
     "completa" : true,
-    "costo" : 1775.0,
+    "costo" : 1550.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
       "artista" : "Andrés Ciro Martínez"
@@ -47,7 +47,7 @@
   }, {
     "titulo" : "Los Dinosaurios",
     "completa" : true,
-    "costo" : 3100.0,
+    "costo" : 3850.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
       "artista" : "Andrés Ciro Martínez"
@@ -87,7 +87,7 @@
   }, {
     "titulo" : "Toxi-Taxi",
     "completa" : true,
-    "costo" : 2950.0,
+    "costo" : 2725.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
       "artista" : "Andrés Ciro Martínez"
