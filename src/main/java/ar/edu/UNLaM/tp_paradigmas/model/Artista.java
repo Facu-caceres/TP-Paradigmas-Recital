@@ -67,10 +67,6 @@ public class Artista {
         return !Collections.disjoint(this.bandas, otroArtista.getBandas());
     }
 
-    /*
-      Define que dos artistas son "iguales" si tienen el mismo nombre.
-      Esto es crucial para que Set<Artista> funcione y no haya duplicados.
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -160,24 +160,10 @@ public class MainGUI extends Application {
 
         col2.getChildren().addAll(
                 lbl2,
-                crearBotonImagen("Contratar (1 Canción)", "/iconos/Contratar (1 Canción).png", e -> contratarParaCancion()),
+                crearBotonImagen("Contratar (1 Canción)", "/iconos/Contratar(1 Canción).png", e -> contratarParaCancion()),
                 crearBotonImagen("Contratar (Recital)", "/iconos/Contratar (Recital).png", e -> contratarTodoRecital()),
                 crearBotonImagen("Entrenar Artista", "/iconos/Entrenar Artista.png", e -> entrenarArtistaDialogo()),
                 crearBotonImagen("Ver Contratados", "/iconos/Ver Artistas Contratados.png", e -> verContratadosTabla()),
-                crearBotonImagen("Quitar Artista", "/iconos/Quitar Artista.png", e -> quitarArtistaDialogo())
-        );
-
-        // Columna 3: Sistema
-        VBox col3 = new VBox(15);
-        col3.setAlignment(Pos.TOP_CENTER);
-        Label lbl3 = new Label("SISTEMA");
-        lbl3.setStyle(ESTILO_SUBTITULO);
-
-        col3.getChildren().addAll(
-                lbl3,
-                crearBotonImagen("Guardar Estado", "/iconos/Guardar Estado.png", e -> guardarEstado()),
-                crearBotonImagen("Cargar Estado", "/iconos/Cargar Estado.png", e -> cargarEstado()),
-                crearBotonImagen("Consulta Prolog", "/iconos/Consulta Prolog.png", e -> consultaProlog()),
                 crearBotonImagen("Salir", "/iconos/Salir.png", "Salir.wav", e -> {
                     // 1. Guardamos
                     productora.guardarEstadoRecitalEnArchivo(RUTA_ESTADO_SALIDA);
@@ -194,6 +180,20 @@ public class MainGUI extends Application {
                             1500
                     );
                 })
+        );
+
+        // Columna 3: Sistema
+        VBox col3 = new VBox(15);
+        col3.setAlignment(Pos.TOP_CENTER);
+        Label lbl3 = new Label("SISTEMA");
+        lbl3.setStyle(ESTILO_SUBTITULO);
+
+        col3.getChildren().addAll(
+                lbl3,
+                crearBotonImagen("Guardar Estado", "/iconos/Guardar Estado.png", e -> guardarEstado()),
+                crearBotonImagen("Cargar Estado", "/iconos/Cargar Estado.png", e -> cargarEstado()),
+                crearBotonImagen("Consulta Prolog", "/iconos/Consulta Prolog.png", e -> consultaProlog()),
+                crearBotonImagen("Quitar Artista", "/iconos/Quitar Artista.png", e -> quitarArtistaDialogo())
         );
 
         grid.add(col1, 0, 0);

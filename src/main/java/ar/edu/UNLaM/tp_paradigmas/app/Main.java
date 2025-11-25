@@ -244,7 +244,7 @@ public class Main {
                         }
                     } while (!subOpcion.equals("5"));
                     break;
-                case 10:
+                case 0:
                     // Al salir, guardar estado automático
                     System.out.println("Generando archivo con el estado final del recital...");
                     if (productora.guardarEstadoRecitalEnArchivo(RUTA_ESTADO_SALIDA)) {
@@ -257,12 +257,12 @@ public class Main {
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
-            if (opcion != 10 && opcion != 9) {
+            if (opcion != 0 && opcion != 9) {
                 System.out.println("--- Presione Enter para continuar ---");
                 scanner.nextLine(); // Pausa
             }
 
-        } while (opcion != 10);
+        } while (opcion != 0);
 
         scanner.close();
     }
@@ -278,7 +278,7 @@ public class Main {
         System.out.println("7. Listar canciones con su estado (completa/incompleta)");
         System.out.println("8. Calcular entrenamientos mínimos (Prolog)");
         System.out.println("9. BONUSES (guardar/cargar estado, arrepentimiento, colaboraciones)");
-        System.out.println("10. Salir y Guardar Estado Final");
+        System.out.println("0. Salir y Guardar Estado Final");
         System.out.print("Seleccione una opción: ");
     }
 
