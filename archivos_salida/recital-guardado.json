@@ -1,111 +1,111 @@
 {
-  "costoTotalRecital" : 12175.0,
-  "cantidadArtistasContratados" : 10,
+  "costoTotalRecital" : 0.0,
+  "cantidadArtistasContratados" : 0,
   "canciones" : [ {
     "titulo" : "Maradó",
-    "completa" : true,
-    "costo" : 2650.0,
+    "completa" : false,
+    "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : "Andrés Ciro Martínez"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Piti Fernández"
+      "artista" : null
     }, {
       "rol" : "bajo",
-      "artista" : "Micky Rodríguez"
+      "artista" : null
     }, {
       "rol" : "batería",
-      "artista" : "Andrea Álvarez"
+      "artista" : null
     }, {
       "rol" : "armónica",
-      "artista" : "Charly García"
+      "artista" : null
     } ]
   }, {
     "titulo" : "Jijiji",
-    "completa" : true,
-    "costo" : 1550.0,
+    "completa" : false,
+    "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : "Andrés Ciro Martínez"
+      "artista" : null
     }, {
       "rol" : "voz principal",
-      "artista" : "Ricardo Mollo"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Piti Fernández"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Juanse"
+      "artista" : null
     }, {
       "rol" : "bajo",
-      "artista" : "Micky Rodríguez"
+      "artista" : null
     }, {
       "rol" : "batería",
-      "artista" : "Andrea Álvarez"
+      "artista" : null
     } ]
   }, {
     "titulo" : "Los Dinosaurios",
-    "completa" : true,
-    "costo" : 3850.0,
+    "completa" : false,
+    "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : "Andrés Ciro Martínez"
+      "artista" : null
     }, {
       "rol" : "piano",
-      "artista" : "Charly García"
+      "artista" : null
     }, {
       "rol" : "teclados",
-      "artista" : "Andrés Calamaro"
+      "artista" : null
     }, {
       "rol" : "bajo",
-      "artista" : "Micky Rodríguez"
+      "artista" : null
     }, {
       "rol" : "batería",
-      "artista" : "Andrea Álvarez"
+      "artista" : null
     } ]
   }, {
     "titulo" : "Costumbres Argentinas",
-    "completa" : true,
-    "costo" : 1400.0,
+    "completa" : false,
+    "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : "Andrés Ciro Martínez"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Piti Fernández"
+      "artista" : null
     }, {
       "rol" : "bajo",
-      "artista" : "Micky Rodríguez"
+      "artista" : null
     }, {
       "rol" : "batería",
-      "artista" : "Andrea Álvarez"
+      "artista" : null
     }, {
       "rol" : "coros",
-      "artista" : "Skay Beilinson"
+      "artista" : null
     } ]
   }, {
     "titulo" : "Toxi-Taxi",
-    "completa" : true,
-    "costo" : 2725.0,
+    "completa" : false,
+    "costo" : 0.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : "Andrés Ciro Martínez"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Piti Fernández"
+      "artista" : null
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : "Ricardo Mollo"
+      "artista" : null
     }, {
       "rol" : "bajo",
-      "artista" : "Micky Rodríguez"
+      "artista" : null
     }, {
       "rol" : "batería",
-      "artista" : "Fernando Ruiz Díaz"
+      "artista" : null
     }, {
       "rol" : "coros",
-      "artista" : "Skay Beilinson"
+      "artista" : null
     } ]
   } ]
 }
