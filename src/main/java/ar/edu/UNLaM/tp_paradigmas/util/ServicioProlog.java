@@ -1,57 +1,24 @@
 package ar.edu.UNLaM.tp_paradigmas.util;
 
+import ar.edu.UNLaM.tp_paradigmas.model.Artista;
+import ar.edu.UNLaM.tp_paradigmas.model.Cancion;
 import org.jpl7.*;
+
+import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class ServicioProlog {
 
     public ServicioProlog() {
-        // Cargamos nuestro archivo .pl
         Query q1 = new Query("consult", new Term[]{new Atom("archivos_fuente/recital.pl")});
-        // Verificamos si la carga fue exitosa
         System.out.println("Cargando 'recital.pl' ... " + (q1.hasSolution() ? "OK" : "FALLÓ"));
+        limpiarHechosCargados();
     }
 
-    /*
-       Prueba simple: Pregunta a Prolog qué roles necesitan entrenamiento
-       basándonos en la regla 'necesita_entrenamiento(Rol)'.
-     */
-    public void consultarRolesSinCobertura() {
-        System.out.println("\n--- Consultando roles sin cobertura ---");
-
-        Variable Rol = new Variable("Rol");
-
-        Query q = new Query("necesita_entrenamiento", new Term[]{Rol});
-
-        // Iteramos por todas las soluciones
-        while (q.hasMoreSolutions()) {
-            Map<String, Term> solucion = q.nextSolution();
-            System.out.println("Rol que necesita entrenamiento: " + solucion.get(Rol.name));
-        }
-    }
-
-    public void consultarQuienCubre(String rol) {
-        System.out.println("\n--- Consultando quién puede cubrir '" + rol + "' ---");
-
-        Variable Artista = new Variable("Artista");
-        Atom rolBuscado = new Atom(rol); // Convertimos el String de Java a un Átomo de Prolog
-
-        Query q = new Query("puede_cubrir", new Term[]{Artista, rolBuscado});
-
-        Map<String, Term>[] soluciones = q.allSolutions(); // Usamos el metodo allSolutions()
-
-        if (soluciones.length == 0) {
-            System.out.println("Nadie puede cubrir ese rol.");
-            return;
-        }
-
-        for (Map<String, Term> sol : soluciones) {
-            System.out.println("Puede cubrirlo: " + sol.get(Artista.name));
-        }
-    }
-
-    // Logica para el punto 8
-    public int getEntrenamientosMinimos() {
+    public int getEntrenamientosMinimos(List<Artista> artistasBase, List<Artista> todosLosArtistas, List<Cancion> canciones) {
+        limpiarHechosCargados();
+        cargarBaseProlog(artistasBase, todosLosArtistas, canciones);
 
         Variable Cantidad = new Variable("Cantidad");
 
@@ -65,6 +32,48 @@ public class ServicioProlog {
             System.err.println("Error: La consulta 'entrenamientos_minimos' no arrojó solución.");
             return -1;
         }
+    }
+
+    private void cargarBaseProlog(List<Artista> artistasBase, List<Artista> todosLosArtistas, List<Cancion> canciones) {
+        for (Artista artista : todosLosArtistas) {
+            Term nombre = new Atom(formatearNombre(artista.getNombre()));
+            Term roles = Util.termArrayToList(artista.getRoles().stream().map(Atom::new).toArray(Term[]::new));
+            assertHecho("artista", nombre, roles);
+        }
+
+        for (Artista artistaBase : artistasBase) {
+            Term nombre = new Atom(formatearNombre(artistaBase.getNombre()));
+            assertHecho("base_member", nombre);
+        }
+
+        for (Cancion cancion : canciones) {
+            for (String rol : cancion.getRolesRequeridos()) {
+                assertHecho("rol_requerido", new Atom(rol));
+            }
+        }
+    }
+
+    private void limpiarHechosCargados() {
+        retractAll("base_member", 1);
+        retractAll("artista", 2);
+        retractAll("rol_requerido", 1);
+    }
+
+    private void retractAll(String predicate, int arity) {
+        Term[] vars = IntStream.range(0, arity)
+                .mapToObj(i -> new Variable("_" + i))
+                .toArray(Term[]::new);
+        Query q = new Query("retractall", new Term[]{new Compound(predicate, vars)});
+        q.hasSolution();
+    }
+
+    private void assertHecho(String predicate, Term... args) {
+        Query q = new Query("assertz", new Term[]{new Compound(predicate, args)});
+        q.hasSolution();
+    }
+
+    private String formatearNombre(String nombre) {
+        return nombre.toLowerCase().replace(" ", "_");
     }
 
 }

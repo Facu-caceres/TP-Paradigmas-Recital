@@ -1,6 +1,7 @@
 package ar.edu.UNLaM.tp_paradigmas.app;
 
 import ar.edu.UNLaM.tp_paradigmas.model.Artista;
+import ar.edu.UNLaM.tp_paradigmas.model.Cancion;
 import ar.edu.UNLaM.tp_paradigmas.service.Productora;
 import ar.edu.UNLaM.tp_paradigmas.util.ServicioProlog;
 import java.util.List;
@@ -43,24 +44,30 @@ public class Main {
             switch (opcion) {
                 case 1:
                     // Ver roles faltantes de una canción
-                    System.out.print("Ingrese el título de la canción: ");
-                    String titulo = scanner.nextLine();
+                    String titulo = seleccionarCancion(productora, scanner);
+                    if (titulo == null) {
+                        break;
+                    }
                     Map<String, Long> rolesFaltantes = productora.getRolesFaltantesParaCancion(titulo);
                     if (rolesFaltantes.isEmpty()) {
                         System.out.println("La canción no se encontró o ya está completa.");
                     } else {
-                        System.out.println("Roles faltantes para '" + titulo + "': " + rolesFaltantes);
+                        long total = rolesFaltantes.values().stream().mapToLong(Long::longValue).sum();
+                        System.out.println("Roles faltantes para '" + titulo + "' (" + total + " en total): " + rolesFaltantes);
                     }
                     break;
                 case 2:
                     // Ver roles faltantes totales
                     Map<String, Long> rolesTotales = productora.getRolesFaltantesTotales();
-                    System.out.println("Roles faltantes en todo el recital: " + rolesTotales);
+                    long totalRoles = rolesTotales.values().stream().mapToLong(Long::longValue).sum();
+                    System.out.println("Roles faltantes en todo el recital (" + totalRoles + " en total): " + rolesTotales);
                     break;
                 case 3:
                     //Contratar artistas para una canción X del recital
-                    System.out.print("Ingrese el título de la canción a contratar: ");
-                    String tituloContratar = scanner.nextLine();
+                    String tituloContratar = seleccionarCancion(productora, scanner);
+                    if (tituloContratar == null) {
+                        break;
+                    }
                     boolean reintentarContratacionCancion = true;
                     do {
                         List<String> rolesFallidosCancion = productora.contratarArtistasParaCancion(tituloContratar);
@@ -77,8 +84,12 @@ public class Main {
                             String decision = scanner.nextLine();
 
                             if (decision.equalsIgnoreCase("S")) {
-                                System.out.print("Nombre del artista a entrenar: ");
-                                String nombreEntrenar = scanner.nextLine();
+                                String nombreEntrenar = seleccionarArtistaDisponible(productora, scanner);
+                                if (nombreEntrenar == null) {
+                                    System.out.println("No hay artistas disponibles para entrenar o canceló la selección.");
+                                    reintentarContratacionCancion = false;
+                                    continue;
+                                }
 
                                 if (productora.entrenarArtista(nombreEntrenar, rolFallido)) {
                                     System.out.println("¡Artista entrenado! (Su costo aumentó 50%). Reintentando contratación...");
@@ -112,8 +123,12 @@ public class Main {
 
                             if (decision.equalsIgnoreCase("S")) {
                                 String rolAEntrenar = rolesFallidosRecital.get(0);
-                                System.out.print("Nombre del artista a entrenar: ");
-                                String nombreEntrenar = scanner.nextLine();
+                                String nombreEntrenar = seleccionarArtistaDisponible(productora, scanner);
+                                if (nombreEntrenar == null) {
+                                    System.out.println("No hay artistas disponibles para entrenar o canceló la selección.");
+                                    reintentarContratacionRecital = false;
+                                    continue;
+                                }
 
                                 if (productora.entrenarArtista(nombreEntrenar, rolAEntrenar)) {
                                     System.out.println("¡Artista entrenado! (Su costo aumentó 50%). Reintentando contratación para todo el recital...");
@@ -131,39 +146,53 @@ public class Main {
                     break;
                 case 5:
                     // Entrenar artista
-                    System.out.print("Nombre del artista a entrenar: ");
-                    String nombreArtista = scanner.nextLine();
-                    System.out.print("Nuevo rol a enseñar: ");
-                    String nuevoRol = scanner.nextLine();
+                    String nombreArtista = seleccionarArtistaDisponible(productora, scanner);
+                    if (nombreArtista == null) {
+                        System.out.println("No hay artistas disponibles para entrenar o canceló la selección.");
+                        break;
+                    }
+                    String nuevoRol = seleccionarRol(productora, scanner);
+                    if (nuevoRol == null) {
+                        System.out.println("No hay roles para entrenar o canceló la selección.");
+                        break;
+                    }
                     if (productora.entrenarArtista(nombreArtista, nuevoRol)) {
                         System.out.println("¡Artista entrenado! (Su costo aumentó 50%)");
                     } else {
-                        System.out.println("Error: No se pudo entrenar al artista (no existe, es base o ya fue contratado).");
+                        System.out.println("Error: No se pudo entrenar al artista (no existe, es base, ya fue contratado o ya conoce ese rol).");
                     }
                     break;
                 case 6:
                     // Listar artistas contratados
                     Set<Artista> contratados = productora.getArtistasContratados();
+                    Map<Artista, List<String>> participaciones = productora.getParticipacionesPorArtista();
                     if(contratados.isEmpty()){
                         System.out.println("Aún no se ha contratado a ningún artista.");
                     } else {
                         System.out.println("Artistas contratados (" + contratados.size() + "):");
                         for (Artista a : contratados) {
-                            System.out.println("- " + a.getNombre() + " (Costo: $" + a.getCostoPorCancion() + ")");
+                            List<String> canciones = participaciones.getOrDefault(a, List.of());
+                            String listado = canciones.isEmpty() ? "(sin asignar aún)" : String.join(", ", canciones);
+                            System.out.println("- " + a.getNombre() + " (Costo: $" + a.getCostoPorCancion() + ") toca: " + listado);
                         }
                     }
                     break;
                 case 7:
                     // Ver estado de canciones
-                    Map<String, String> estado = productora.getEstadoCanciones();
+                    Map<String, String> estado = productora.getEstadoCancionesDetallado();
                     System.out.println("Estado de las canciones:");
-                    estado.forEach((tituloCancion, estadoStr) ->
-                            System.out.println("- " + tituloCancion + ": " + estadoStr)
-                    );
+                    estado.forEach((tituloCancion, estadoStr) -> {
+                        System.out.println("- " + tituloCancion + ":");
+                        System.out.println(estadoStr.replace("\n", "\n  "));
+                    });
                     break;
                 case 8:
                     // Resolver la consigna de Prolog
-                    int cantidadEntrenamientos = servicioProlog.getEntrenamientosMinimos();
+                    int cantidadEntrenamientos = servicioProlog.getEntrenamientosMinimos(
+                            productora.getArtistasBase(),
+                            productora.getTodosLosArtistas(),
+                            productora.getRecital().getCanciones()
+                    );
                     System.out.println("--- Respuesta de Prolog ---");
                     System.out.println("Según los miembros base y los roles del recital, se necesitarían...");
                     System.out.println("Entrenamientos mínimos: " + cantidadEntrenamientos);
@@ -211,8 +240,11 @@ public class Main {
                                 break;
                             case "3":
                                 // BONUS: Arrepentimiento - quitar artista del recital
-                                System.out.print("Nombre del artista a quitar del recital: ");
-                                String nombreQuitar = scanner.nextLine();
+                                String nombreQuitar = seleccionarArtistaContratado(productora, scanner);
+                                if (nombreQuitar == null) {
+                                    System.out.println("No hay artistas contratados o canceló la selección.");
+                                    break;
+                                }
                                 if (productora.quitarArtistaDelRecital(nombreQuitar)) {
                                     System.out.println("Se quitaron las participaciones de '" + nombreQuitar + "' del recital.");
                                 } else {
@@ -291,5 +323,129 @@ public class Main {
         System.out.println("4. Mostrar historial de colaboraciones ");
         System.out.println("5. Volver al menú principal");
         System.out.print("Seleccione una opción: ");
+    }
+
+    private static String seleccionarCancion(Productora productora, Scanner scanner) {
+        List<Cancion> canciones = productora.getRecital().getCanciones();
+        if (canciones.isEmpty()) {
+            System.out.println("No hay canciones cargadas.");
+            return null;
+        }
+
+        System.out.println("Seleccione una canción:");
+        for (int i = 0; i < canciones.size(); i++) {
+            System.out.println((i + 1) + ") " + canciones.get(i).getTitulo());
+        }
+        System.out.println("0) Cancelar");
+        System.out.print("Opción: ");
+
+        try {
+            int opcion = Integer.parseInt(scanner.nextLine());
+            if (opcion == 0) {
+                return null;
+            }
+            if (opcion > 0 && opcion <= canciones.size()) {
+                return canciones.get(opcion - 1).getTitulo();
+            }
+        } catch (NumberFormatException e) {
+            // Continúa hacia el mensaje de error
+        }
+
+        System.out.println("Opción inválida.");
+        return null;
+    }
+
+    private static String seleccionarArtistaDisponible(Productora productora, Scanner scanner) {
+        List<Artista> disponibles = productora.getArtistasDisponibles().stream()
+                .filter(a -> !productora.getRecital().getArtistasContratados().contains(a))
+                .collect(Collectors.toList());
+
+        if (disponibles.isEmpty()) {
+            return null;
+        }
+
+        System.out.println("Seleccione un artista para entrenar:");
+        for (int i = 0; i < disponibles.size(); i++) {
+            Artista artista = disponibles.get(i);
+            System.out.println((i + 1) + ") " + artista.getNombre() +
+                    " (Roles: " + String.join(", ", artista.getRoles()) +
+                    ", Costo: $" + artista.getCostoPorCancion() + ")");
+        }
+        System.out.println("0) Cancelar");
+        System.out.print("Opción: ");
+
+        try {
+            int opcion = Integer.parseInt(scanner.nextLine());
+            if (opcion == 0) {
+                return null;
+            }
+            if (opcion > 0 && opcion <= disponibles.size()) {
+                return disponibles.get(opcion - 1).getNombre();
+            }
+        } catch (NumberFormatException e) {
+            // Continúa hacia el mensaje de error
+        }
+
+        System.out.println("Opción inválida.");
+        return null;
+    }
+
+    private static String seleccionarRol(Productora productora, Scanner scanner) {
+        List<String> roles = productora.getRolesRequeridosDelRecital();
+        if (roles.isEmpty()) {
+            return null;
+        }
+
+        System.out.println("Seleccione un rol:");
+        for (int i = 0; i < roles.size(); i++) {
+            System.out.println((i + 1) + ") " + roles.get(i));
+        }
+        System.out.println("0) Cancelar");
+        System.out.print("Opción: ");
+
+        try {
+            int opcion = Integer.parseInt(scanner.nextLine());
+            if (opcion == 0) {
+                return null;
+            }
+            if (opcion > 0 && opcion <= roles.size()) {
+                return roles.get(opcion - 1);
+            }
+        } catch (NumberFormatException e) {
+            // Continúa hacia el mensaje de error
+        }
+
+        System.out.println("Opción inválida.");
+        return null;
+    }
+
+    private static String seleccionarArtistaContratado(Productora productora, Scanner scanner) {
+        List<Artista> contratados = productora.getRecital().getArtistasContratados().stream().toList();
+
+        if (contratados.isEmpty()) {
+            return null;
+        }
+
+        System.out.println("Seleccione un artista contratado:");
+        for (int i = 0; i < contratados.size(); i++) {
+            System.out.println((i + 1) + ") " + contratados.get(i).getNombre());
+        }
+        System.out.println("0) Cancelar");
+        System.out.print("Opción: ");
+
+        try {
+            int opcion = Integer.parseInt(scanner.nextLine());
+            if (opcion == 0) {
+                return null;
+            }
+            if (opcion > 0 && opcion <= contratados.size()) {
+                return contratados.get(opcion - 1).getNombre();
+            }
+        } catch (NumberFormatException e) {
+            // Continúa hacia el mensaje de error
+        }
+
+        System.out.println("Opción inválida.");
+        return null;
     }
 }

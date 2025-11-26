@@ -29,6 +29,13 @@ public class Cancion {
     public List<Asignacion> getAsignaciones() {
         return asignaciones;
     }
+
+    public List<String> getRolesRequeridos() {
+        return this.asignaciones.stream()
+                .map(Asignacion::getRolRequerido)
+                .collect(Collectors.toList());
+    }
+
     // Setters
     public void setTitulo(String titulo) {
         this.titulo = titulo;

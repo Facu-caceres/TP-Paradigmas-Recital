@@ -1,79 +1,111 @@
 {
-  "costoTotalRecital" : 0.0,
-  "cantidadArtistasContratados" : 0,
+  "costoTotalRecital" : 12175.0,
+  "cantidadArtistasContratados" : 10,
   "canciones" : [ {
-    "titulo" : "Somebody to Love",
-    "completa" : false,
-    "costo" : 0.0,
+    "titulo" : "Maradó",
+    "completa" : true,
+    "costo" : 2650.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : null
+      "artista" : "Andrés Ciro Martínez"
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : null
+      "artista" : "Piti Fernández"
     }, {
       "rol" : "bajo",
-      "artista" : null
+      "artista" : "Micky Rodríguez"
     }, {
       "rol" : "batería",
-      "artista" : null
+      "artista" : "Andrea Álvarez"
+    }, {
+      "rol" : "armónica",
+      "artista" : "Charly García"
+    } ]
+  }, {
+    "titulo" : "Jijiji",
+    "completa" : true,
+    "costo" : 1550.0,
+    "asignaciones" : [ {
+      "rol" : "voz principal",
+      "artista" : "Andrés Ciro Martínez"
+    }, {
+      "rol" : "voz principal",
+      "artista" : "Ricardo Mollo"
+    }, {
+      "rol" : "guitarra eléctrica",
+      "artista" : "Piti Fernández"
+    }, {
+      "rol" : "guitarra eléctrica",
+      "artista" : "Juanse"
+    }, {
+      "rol" : "bajo",
+      "artista" : "Micky Rodríguez"
+    }, {
+      "rol" : "batería",
+      "artista" : "Andrea Álvarez"
+    } ]
+  }, {
+    "titulo" : "Los Dinosaurios",
+    "completa" : true,
+    "costo" : 3850.0,
+    "asignaciones" : [ {
+      "rol" : "voz principal",
+      "artista" : "Andrés Ciro Martínez"
     }, {
       "rol" : "piano",
-      "artista" : null
-    } ]
-  }, {
-    "titulo" : "We Will Rock You",
-    "completa" : false,
-    "costo" : 0.0,
-    "asignaciones" : [ {
-      "rol" : "voz principal",
-      "artista" : null
+      "artista" : "Charly García"
     }, {
-      "rol" : "guitarra eléctrica",
-      "artista" : null
+      "rol" : "teclados",
+      "artista" : "Andrés Calamaro"
     }, {
       "rol" : "bajo",
-      "artista" : null
+      "artista" : "Micky Rodríguez"
     }, {
       "rol" : "batería",
-      "artista" : null
+      "artista" : "Andrea Álvarez"
     } ]
   }, {
-    "titulo" : "These Are the Days of Our Lives",
-    "completa" : false,
-    "costo" : 0.0,
+    "titulo" : "Costumbres Argentinas",
+    "completa" : true,
+    "costo" : 1400.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : null
+      "artista" : "Andrés Ciro Martínez"
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : null
+      "artista" : "Piti Fernández"
     }, {
       "rol" : "bajo",
-      "artista" : null
+      "artista" : "Micky Rodríguez"
     }, {
       "rol" : "batería",
-      "artista" : null
+      "artista" : "Andrea Álvarez"
+    }, {
+      "rol" : "coros",
+      "artista" : "Skay Beilinson"
     } ]
   }, {
-    "titulo" : "Under Pressure",
-    "completa" : false,
-    "costo" : 0.0,
+    "titulo" : "Toxi-Taxi",
+    "completa" : true,
+    "costo" : 2725.0,
     "asignaciones" : [ {
       "rol" : "voz principal",
-      "artista" : null
-    }, {
-      "rol" : "voz principal",
-      "artista" : null
+      "artista" : "Andrés Ciro Martínez"
     }, {
       "rol" : "guitarra eléctrica",
-      "artista" : null
+      "artista" : "Piti Fernández"
+    }, {
+      "rol" : "guitarra eléctrica",
+      "artista" : "Ricardo Mollo"
     }, {
       "rol" : "bajo",
-      "artista" : null
+      "artista" : "Micky Rodríguez"
     }, {
       "rol" : "batería",
-      "artista" : null
+      "artista" : "Fernando Ruiz Díaz"
+    }, {
+      "rol" : "coros",
+      "artista" : "Skay Beilinson"
     } ]
   } ]
 }
