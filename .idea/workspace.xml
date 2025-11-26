@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc9421c5-6693-440b-81f3-42e8fc05e286" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/ar/edu/UNLaM/tp_paradigmas/service/ProductoraTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ar/edu/UNLaM/tp_paradigmas/service/ProductoraTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,37 +46,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Launcher.executor": "Run",
-    "Application.Main App.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MainGUI.executor": "Run",
-    "JUnit.ProductoraIntegrationTest.executor": "Run",
-    "JUnit.ProductoraIntegrationTest.quitarArtistaEliminaAsignaciones.executor": "Run",
-    "JUnit.ProductoraTest.executor": "Run",
-    "Maven.TP_Paradigmas_Recital_ [clean].executor": "Run",
-    "Maven.TP_Paradigmas_Recital_ [install].executor": "Run",
-    "Maven.TP_Paradigmas_Recital_ [verify].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Correcciones",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/cacer/OneDrive/Escritorio/TP-Paradigmas-Recital",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "proofread",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainGUI.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductoraIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductoraIntegrationTest.quitarArtistaEliminaAsignaciones.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductoraTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.TP_Paradigmas_Recital_ [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.TP_Paradigmas_Recital_ [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.TP_Paradigmas_Recital_ [verify].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Correcciones&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/cacer/OneDrive/Escritorio/TP-Paradigmas-Recital&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="ar.edu.UNLaM.tp_paradigmas.app.Main" />
@@ -108,6 +108,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="fc9421c5-6693-440b-81f3-42e8fc05e286" name="Changes" comment="" />
@@ -119,7 +127,8 @@
       <workItem from="1764010425057" duration="748000" />
       <workItem from="1764011815470" duration="13385000" />
       <workItem from="1764034546896" duration="159000" />
-      <workItem from="1764083310000" duration="15551000" />
+      <workItem from="1764083310000" duration="15625000" />
+      <workItem from="1764105735321" duration="816000" />
     </task>
     <servers />
   </component>
